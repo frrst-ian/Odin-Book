@@ -11,15 +11,12 @@ export default function useRegister() {
     const [submitting, setSubmitting] = useState(false);
     const navigate = useNavigate();
 
-    const registerUser = async (name, email, password, confirmPassword) => {
+    const registerUser = async (form) => {
         try {
             setSubmitting(true);
-            const response = await client.post("/auth/register", {
-                name: name,
-                email: email,
-                password: password,
-                confirmPassword: confirmPassword,
-            });
+            const response = await client.post("/auth/register", 
+                form,
+            );
 
             const userData = response.data;
             // console.log("userData:", userData);
@@ -28,7 +25,7 @@ export default function useRegister() {
             return userData;
         } catch (err) {
             const errors = err.response.data.errors;
-            console.log("Error:" , errors)
+            console.log("Error:", errors);
             setError(errors);
             setSubmitting(false);
         } finally {
