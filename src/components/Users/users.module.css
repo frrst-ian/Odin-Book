@@ -1,0 +1,129 @@
+.usersWrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0.8rem;
+    gap: 1rem;
+    margin-top: 2.5rem;
+}
+
+.searchWrapper {
+    width: 500px;
+    display: flex;
+    justify-content: center;
+}
+
+.form {
+    position: relative;
+    width: 100%;
+}
+
+.searchInput {
+    padding: 0.6rem 3rem;
+    border-radius: 0.3rem;
+    background: #2b2b2c;
+    border: none;
+    color: #bfbfbf;
+    width: 100%;
+}
+
+.searchInput:focus,
+.searchInput:hover {
+    outline: none;
+    border: 1px solid var(--secondary);
+}
+
+.searchIcon {
+    position: absolute;
+    left: 12px;
+    top: 9px;
+}
+
+.recent {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.8rem;
+}
+
+.usersList {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 0.9rem;
+    gap: 1rem;
+    width: 100%;
+}
+
+.userItem {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    padding: 0.5rem;
+    border-radius: 0.4rem;
+    width: 525px;
+    position: relative;
+}
+
+.userItem:hover {
+    cursor: pointer;
+    background: #343538a8;
+}
+
+.user {
+    display: flex;
+    gap: 0.4rem;
+    justify-content: start;
+    align-items: center;
+    flex: 1;
+}
+
+img.pfp {
+    border-radius: 50%;
+    width: 2.5rem;
+    height: 2.5rem;
+    object-fit: cover;
+}
+
+.actionBtnsWrapper {
+    display: flex;
+    gap: 0.8rem;
+}
+
+.actionBtn {
+    padding: 0.4rem;
+}
+
+.tooltip {
+    display: none;
+}
+
+.actionBtn:hover .tooltip {
+    position: absolute;
+    display: block;
+    top: 3rem;
+    right: 2rem;
+    font-size: 0.85rem;
+    background: #51555d;
+    padding: 0.35rem;
+    border-radius: 0.4rem;
+}
+
+.actionBtn:hover .msgTooltip {
+    right: -0.2rem;
+}
+
+@media (max-width: 580px) {
+    .userItem {
+        width: 100%;
+    }
+
+    .searchWrapper {
+        width: 100%;
+    }
+
+    .searchInput {
+        width: 100%;
+    }
+}
