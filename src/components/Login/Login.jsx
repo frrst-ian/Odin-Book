@@ -2,16 +2,24 @@ import { useState } from "react";
 import useLogin from "../../hooks/useLogin";
 import Button from "../Button/Button";
 import styles from "./login.module.css";
+import {useNavigate } from "react-router-dom"
 
 export default function Login() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const { loginUser, error,submitting } = useLogin();
+    const { loginUser, error, submitting } = useLogin();
+
+    const navigate = useNavigate()
 
     const handleSubmit = (e) => {
         e.preventDefault();
 
         loginUser(email, password);
+    };
+
+    const handleOAuthLogin = (provider) => {
+        const baseUrl = "http://localhost:3000/api";
+        window.location.href = `${baseUrl}/auth/${provider}`;
     };
 
     return (
@@ -50,6 +58,10 @@ export default function Login() {
                         status={submitting}
                     ></Button>
 
+                    <hr />
+
+                  
+
                     <a
                         className={styles.btn}
                         rel="noopener noreferrer"
@@ -73,6 +85,9 @@ export default function Login() {
                         </svg>
                     </a>
                 </form>
+                  <button
+                        onClick={() => handleOAuthLogin("github")}
+                    > Login with G</button>
             </div>
         </>
     );

@@ -17,8 +17,6 @@ export default function Users() {
 
     const navigate = useNavigate();
 
-    console.log("Users:" , users)
-
     if (loading) return <div className="loading" >Loading...</div>;
 
     return (

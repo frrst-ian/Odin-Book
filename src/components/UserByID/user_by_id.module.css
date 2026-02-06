@@ -1,0 +1,46 @@
+.userInfoWrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 600px;
+}
+
+.userInfo {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+    width: 400px;
+    border-radius: 0.6rem;
+    height: 500px;
+    background: #1e212b;
+}
+
+img.pfp {
+    border-radius: 50%;
+    width: 10rem;
+    height: 10rem;
+    object-fit: cover;
+}
+
+.name {
+    font-size: 1.7rem;
+}
+
+.bio > p {
+    font-size: 0.95rem;
+    color: #949599;
+    text-align: center;
+}
+
+@media (max-width: 460px) {
+    .userInfo {
+        width: 100%;
+    }   
+
+    .userInfoWrapper {
+        padding: 1.5rem;
+    }
+}
