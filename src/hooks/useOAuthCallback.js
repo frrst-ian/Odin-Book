@@ -19,8 +19,6 @@ const useOAuthCallback = () => {
     }
   }, [location, navigate, handleOAuthCallback]);
 
-  return (<p>loading...</p>)
-
 };
 
 export default useOAuthCallback;

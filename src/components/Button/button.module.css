@@ -1,0 +1,29 @@
+.btn {
+    border: none;
+    cursor: pointer;
+    border-radius: 0.5rem;
+    padding: 0.45rem;
+    width: 100%;
+}
+
+.primary {
+    composes: btn;
+    background: var(--primary);
+    color: var(--text);
+    transition: all 0.3s ease;
+}
+
+.primary:hover {
+    background: #1077c5;
+}
+
+.secondary {
+    composes: btn;
+    background: var(--secondary);
+    color: var(--text);
+    transition: all 0.3s ease;
+}
+
+.secondary:hover {
+    background: #1077c5;
+}

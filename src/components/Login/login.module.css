@@ -1,0 +1,96 @@
+.loginContainer,
+form.loginForm,
+a.btn,
+.oauthLogin {
+    display: flex;
+}
+
+.oauthLogin,
+.loginContainer {
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+}
+
+.oauthLogin {
+    gap: 1rem;
+}
+
+.loginContainer {
+    align-items: center;
+    height: 100vh;
+}
+
+.loginHeader {
+    font-size: 2rem;
+}
+
+form.loginForm {
+    flex-direction: column;
+    text-align: center;
+    gap: 1rem;
+    width: 350px;
+}
+
+.loginInput {
+    padding: 0.4rem 0.8rem;
+    background: #484854;
+    color: var(--text);
+    outline: none;
+    border: 1px solid #8c8c9b;
+    border-radius: 0.5rem;
+    width: 100%;
+}
+
+.loginInput::placeholder {
+    color: var(--text);
+}
+
+.loginInput:focus {
+    border: 2px solid var(--accent);
+}
+
+a.btn {
+    gap: 0.8rem;
+    justify-content: center;
+    align-items: center;
+    padding: 0.4rem;
+    border: 0.5px solid #242425;
+    border-radius: 0.5rem;
+    width: 100%;
+}
+
+a.btn:hover {
+    text-decoration: underline;
+}
+
+.error {
+    color: #ff5959;
+}
+
+.line {
+    border: 1px solid white;
+    width: 100%;
+}
+
+.btnOAuth {
+    border: none;
+    cursor: pointer;
+    border-radius: 0.5rem;
+    padding: 0.45rem;
+    width: 100%;
+    background: #484854;
+    color: var(--text);
+    transition: all 0.3s ease;
+}
+
+.btnOAuth:hover {
+    background: #252628;
+}
+
+@media (max-width: 380px) {
+    form.loginForm {
+        width: 100%;
+        padding: 1.2rem;
+    }
+}

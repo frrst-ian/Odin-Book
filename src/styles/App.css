@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css?family=Funnel%20Sans:700|Funnel%20Sans:400");
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap');
 
 body {
     font-family: "Funnel Sans";
@@ -10,7 +11,7 @@ h2,
 h3,
 h4,
 h5 {
-    font-family: "Funnel Sans";
+    font-family: "Jetbrains Mono" , monospace;
     font-weight: 700;
 }
 
@@ -50,7 +51,7 @@ body,
     min-height: 100vh;
 }
 
-/* a {
+a {
     text-decoration: none;
     color: var(--text);
 }
@@ -60,7 +61,6 @@ body,
     color: var(--text);
 }
 
- */
 .loading {
     height: 100vh;
     display: flex;
