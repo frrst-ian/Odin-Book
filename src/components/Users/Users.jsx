@@ -1,26 +1,26 @@
 import { useNavigate } from "react-router-dom";
 import useUsers from "../../hooks/useUsers";
+import useFollow from "../../hooks/useFollow";
 import styles from "./users.module.css";
 import Nav from "../Nav/Nav";
 import { Search, History, CircleUser } from "lucide-react";
 import Button from "../Button/Button";
 
 export default function Users() {
-    const {
-        handleSearch,
-        search,
-        setSearch,
-        users,
-        loading,
-        error,
-        handleUserClick,
-    } = useUsers();
+    const { handleSearch, search, setSearch, users, loading, error } =
+        useUsers();
+
+    const { toggleFollow, userFollowing } = useFollow();
+
+    const isFollowing = (userId) => {
+        return userFollowing.some((user) => user.id === userId);
+    };
 
     const navigate = useNavigate();
 
     if (loading) return <div className="loading">Loading...</div>;
 
-    const isFollowing = (userId) => {
+    const isUserFollowing = (userId) => {
         const currentUser = JSON.parse(localStorage.getItem("user"));
         const currentUserId = currentUser.id;
         return userId[0] === currentUserId ? true : false;
@@ -61,21 +61,15 @@ export default function Users() {
                                 <p>{u.name}</p>
                             </div>
                             <div className={styles.actionBtnsWrapper}>
-                                <div
-                                    className={styles.actionBtn}
-                                    onClick={() => handleUserClick(u.id)}
-                                >
+                                <div className={styles.actionBtn}>
                                     <Button
                                         label={
-                                            isFollowing(
-                                                u.followedBy.map(
-                                                    (f) => f.followedById,
-                                                ),
-                                            )
+                                            isFollowing(u.id)
                                                 ? "Following"
                                                 : "Follow"
                                         }
                                         type={"secondary"}
+                                        task={() => toggleFollow(u.id)}
                                     ></Button>
                                 </div>
                                 <div
