@@ -76,8 +76,10 @@ h6 {
 
 :root {
   --text: #e4eaeb;
+  --text2: #c1bed1;
   --background: #101011;
-  --primary: #108ae7;
+  --s-background: #1b1c23;
+  --primary: #8b5cf6;
   --secondary: #3a86c9;
   --accent: #3960ae;
 }

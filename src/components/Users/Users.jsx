@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import useUsers from "../../hooks/useUsers";
 import styles from "./users.module.css";
-// import Nav from "../Nav/Nav";
+import Nav from "../Nav/Nav";
 import { Search, History, CircleUser } from "lucide-react";
 
 export default function Users() {
@@ -21,11 +21,11 @@ export default function Users() {
 
     return (
         <>
-            {/*<Nav />*/}
+            <Nav />
             <div className={styles.usersWrapper}>
                 <div className={styles.searchWrapper}>
                     <form className={styles.form} onSubmit={handleSearch}>
-                        <Search className={styles.searchIcon} color="#bfbfbf" />
+                        <Search className={styles.searchIcon}  />
                         <input
                             className={styles.searchInput}
                             name="search"
@@ -37,15 +37,15 @@ export default function Users() {
                     </form>
                 </div>
                 <div className={styles.recent}>
-                    <History color="#dedede" />
-                    <p>Recent users...</p>
+                    <History color="#dedede" width="20px" />
+                    <p>Recent users</p>
                 </div>
 
                 <div className={styles.usersList}>
                     {users.map((u) => (
                         <div key={u.id} className={styles.userItem}>
                             <div className={styles.user}>
-                                <img className={styles.pfp} src={u.profilePicture} />
+                                <img decoding="async" loading="eager"  className={styles.pfp} src={u.profilePicture} />
                                 <p>{u.name}</p>
                             </div>
                             <div className={styles.actionBtnsWrapper}>

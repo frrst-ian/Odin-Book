@@ -1,0 +1,129 @@
+.navWrapper {
+    padding: 1.5rem 0.75rem 0.75rem 0.75rem;
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+}
+
+.navGroup,
+.dropdown {
+    margin-left: auto;
+}
+
+.navGroup {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    background-color: #1b1c23;
+    border-radius: 1.8rem;
+    padding: 0.4rem;
+}
+
+.navItem {
+    display: flex;
+    gap: 0.6rem;
+    align-items: center;
+    padding: 0.75rem 0.95rem;
+    border-radius: 1.4rem;
+}
+
+.navItem:hover {
+    cursor: pointer;
+    color: var(--primary);
+    background-color: rgba(139, 92, 246, 0.3);
+}
+
+.navItem.active {
+    background-color: rgba(139, 92, 246, 0.3);
+    color: var(--primary);
+}
+
+.navItem:focus-visible {
+    outline: none;
+}
+
+.navIcon {
+    flex-shrink: 0;
+}
+
+a.navItem {
+    color: var(--text2);
+}
+
+ul {
+    list-style-type: none;
+    display: flex;
+    justify-content: center;
+    flex: 1;
+    color: var(--text);
+    background-color: var(--background);
+}
+
+.dropdown {
+    position: relative;
+    background-color: var(--background);
+}
+
+.menu {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    list-style-type: none;
+    margin: 5px 0;
+    border: 1px solid black;
+    right: 5px;
+    top: 45px;
+    width: 250px;
+    background-color: var(--s-background);
+    padding: 0.9rem;
+    border-radius: 0.4rem;
+    gap: 1rem;
+    z-index: 999;
+}
+
+.menu > li.menuItem {
+    display: flex;
+    gap: 0.8rem;
+    align-items: center;
+    justify-content: start;
+}
+
+.menu > li:hover {
+    cursor: pointer;
+}
+
+.menu > li:hover .icon {
+    color: #d7d7d7db;
+    cursor: pointer;
+}
+
+.menu > li > button {
+    width: 100%;
+    height: 100%;
+    text-align: left;
+
+    background: none;
+    color: inherit;
+    border: none;
+    padding: 5px;
+    margin: 0;
+    font: inherit;
+    cursor: pointer;
+}
+
+.pfpBtn {
+    cursor: pointer;
+    background-color: var(--background);
+    border: none;
+}
+
+.pfp {
+    border-radius: 50%;
+    width: 2.6rem;
+    height: 2.6em;
+    object-fit: cover;
+    color: #fff;
+}

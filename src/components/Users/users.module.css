@@ -4,7 +4,6 @@
     align-items: center;
     padding: 0.8rem;
     gap: 1rem;
-    margin-top: 2.5rem;
 }
 
 .searchWrapper {
@@ -20,30 +19,35 @@
 
 .searchInput {
     padding: 0.6rem 3rem;
-    border-radius: 0.3rem;
-    background: #2b2b2c;
+    border-radius: 0.4rem;
+    background: var(--s-background);
     border: none;
-    color: #bfbfbf;
+    color: #dcdcdc;
     width: 100%;
+    height: 40px;
+}
+
+.searchInput::placeholder {
+    color: #8a8a99;
 }
 
 .searchInput:focus,
 .searchInput:hover {
     outline: none;
-    border: 1px solid var(--secondary);
+    border: 1px solid #838394;
 }
 
 .searchIcon {
     position: absolute;
-    left: 12px;
-    top: 9px;
+    left: 18px;
+    color: #8a8a99;
 }
 
 .recent {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 0.8rem;
+    gap: 0.4rem;
 }
 
 .usersList {
@@ -60,7 +64,7 @@
     display: flex;
     justify-content: start;
     align-items: center;
-    padding: 0.5rem;
+    padding: 0.4rem;
     border-radius: 0.4rem;
     width: 525px;
     position: relative;
@@ -68,12 +72,12 @@
 
 .userItem:hover {
     cursor: pointer;
-    background: #343538a8;
+    background-color: var(--s-background);
 }
 
 .user {
     display: flex;
-    gap: 0.4rem;
+    gap: 0.95rem;
     justify-content: start;
     align-items: center;
     flex: 1;
