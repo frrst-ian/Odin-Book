@@ -18,7 +18,6 @@ export default function useUsers() {
             const response = await client.get(`/u${query}`, {
                 headers: { Authorization: `Bearer ${token}` },
             });
-            console.log("RESPONSE.DATA:", response.data);
 
             const usersData = await response.data;
             setUsers(usersData);

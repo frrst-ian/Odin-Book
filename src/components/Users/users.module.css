@@ -96,20 +96,31 @@ img.pfp {
 }
 
 .actionBtn {
-    padding: 0.4rem;
+    padding: 0rem 0.55rem 0rem 0.55rem;
+}
+
+.actionBtnIcon {
+    background: var(--secondary);
+    border-radius: 0.45rem;
+    display: flex;
+    align-items: center;
 }
 
 .tooltip {
     display: none;
 }
 
+.actionBtnIcon:hover {
+    background-color: #7848e8;
+}
+
 .actionBtn:hover .tooltip {
     position: absolute;
     display: block;
-    top: 3rem;
-    right: 2rem;
+    top: 2.65rem;
+    right: 0rem;
     font-size: 0.85rem;
-    background: #51555d;
+    background: #2c2d38;
     padding: 0.35rem;
     border-radius: 0.4rem;
 }

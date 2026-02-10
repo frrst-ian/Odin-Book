@@ -3,6 +3,7 @@ import useUsers from "../../hooks/useUsers";
 import styles from "./users.module.css";
 import Nav from "../Nav/Nav";
 import { Search, History, CircleUser } from "lucide-react";
+import Button from "../Button/Button";
 
 export default function Users() {
     const {
@@ -17,7 +18,13 @@ export default function Users() {
 
     const navigate = useNavigate();
 
-    if (loading) return <div className="loading" >Loading...</div>;
+    if (loading) return <div className="loading">Loading...</div>;
+
+    const isFollowing = (userId) => {
+        const currentUser = JSON.parse(localStorage.getItem("user"));
+        const currentUserId = currentUser.id;
+        return userId[0] === currentUserId ? true : false;
+    };
 
     return (
         <>
@@ -25,7 +32,7 @@ export default function Users() {
             <div className={styles.usersWrapper}>
                 <div className={styles.searchWrapper}>
                     <form className={styles.form} onSubmit={handleSearch}>
-                        <Search className={styles.searchIcon}  />
+                        <Search className={styles.searchIcon} />
                         <input
                             className={styles.searchInput}
                             name="search"
@@ -45,24 +52,43 @@ export default function Users() {
                     {users.map((u) => (
                         <div key={u.id} className={styles.userItem}>
                             <div className={styles.user}>
-                                <img decoding="async" loading="eager"  className={styles.pfp} src={u.profilePicture} />
+                                <img
+                                    decoding="async"
+                                    loading="eager"
+                                    className={styles.pfp}
+                                    src={u.profilePicture}
+                                />
                                 <p>{u.name}</p>
                             </div>
                             <div className={styles.actionBtnsWrapper}>
                                 <div
                                     className={styles.actionBtn}
+                                    onClick={() => handleUserClick(u.id)}
+                                >
+                                    <Button
+                                        label={
+                                            isFollowing(
+                                                u.followedBy.map(
+                                                    (f) => f.followedById,
+                                                ),
+                                            )
+                                                ? "Following"
+                                                : "Follow"
+                                        }
+                                        type={"secondary"}
+                                    ></Button>
+                                </div>
+                                <div
+                                    className={[
+                                        styles.actionBtn,
+                                        styles.actionBtnIcon,
+                                    ].join(" ")}
                                     onClick={() => navigate(`/users/${u.id}`)}
                                 >
                                     <CircleUser />
                                     <span className={styles.tooltip}>
                                         View profile
                                     </span>
-                                </div>
-                                <div
-                                    className={styles.actionBtn}
-                                    onClick={() => handleUserClick(u.id)}
-                                >
-                                  
                                 </div>
                             </div>
                         </div>

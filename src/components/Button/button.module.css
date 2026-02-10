@@ -1,7 +1,7 @@
 .btn {
     border: none;
     cursor: pointer;
-    border-radius: 0.5rem;
+    border-radius: 0.45rem;
     padding: 0.45rem;
     width: 100%;
 }
@@ -14,16 +14,18 @@
 }
 
 .primary:hover {
-    background: #1077c5;
+    background: #7848e8;
 }
 
 .secondary {
     composes: btn;
+    padding: 0.1rem 0.55rem;
     background: var(--secondary);
     color: var(--text);
     transition: all 0.3s ease;
 }
 
 .secondary:hover {
-    background: #1077c5;
+    background: #7848e8;
 }
+
