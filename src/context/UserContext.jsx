@@ -41,8 +41,6 @@ const UserProvider = ({ children }) => {
         setToken(token);
         localStorage.setItem("token", token);
 
-        console.log("token: ", token);
-
         const profileResponse = await client.get("/u/profile", {
             headers: { Authorization: `Bearer ${token}` },
         });

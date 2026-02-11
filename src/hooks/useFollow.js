@@ -12,7 +12,11 @@ export default function useFollow() {
     useEffect(() => {
         const fetchUserFollowing = async () => {
             try {
-                const res = await client.get("/f/fw");
+                const res = await client.get("/f", {
+                    headers: {
+                        Authorization: `Bearer ${localStorage.getItem("token")} `,
+                    },
+                });
                 const userData = res.data;
                 setUserFollowing(userData);
             } catch (err) {

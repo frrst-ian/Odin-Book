@@ -4,6 +4,7 @@ import Login from "./components/Login/Login";
 import Users from "./components/Users/Users";
 import UserByID from "./components/UserByID/UserByID";
 import OAuthCallback from "./components/OAuthCallback/OAuthCallback"
+import Followers from "./components/Followers/Followers"
 
 const AppRoutes = () => {
     return (
@@ -14,6 +15,7 @@ const AppRoutes = () => {
             <Route path="users" element={<Users />} />
             <Route path="users/:id" element={<UserByID />} />
             <Route path="auth/callback" element={<OAuthCallback />} />
+            <Route path="followers/:id" element={<Followers />} />
         </Routes>
     );
 };

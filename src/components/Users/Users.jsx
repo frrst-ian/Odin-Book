@@ -1,10 +1,10 @@
 import { useNavigate } from "react-router-dom";
+import { Search, CircleUser } from "lucide-react";
+import Button from "../Button/Button";
+import Nav from "../Nav/Nav";
 import useUsers from "../../hooks/useUsers";
 import useFollow from "../../hooks/useFollow";
 import styles from "./users.module.css";
-import Nav from "../Nav/Nav";
-import { Search, History, CircleUser } from "lucide-react";
-import Button from "../Button/Button";
 
 export default function Users() {
     const { handleSearch, search, setSearch, users, loading, error } =
@@ -19,12 +19,6 @@ export default function Users() {
     const navigate = useNavigate();
 
     if (loading) return <div className="loading">Loading...</div>;
-
-    const isUserFollowing = (userId) => {
-        const currentUser = JSON.parse(localStorage.getItem("user"));
-        const currentUserId = currentUser.id;
-        return userId[0] === currentUserId ? true : false;
-    };
 
     return (
         <>
@@ -44,8 +38,7 @@ export default function Users() {
                     </form>
                 </div>
                 <div className={styles.recent}>
-                    <History color="#dedede" width="20px" />
-                    <p>Recent users</p>
+                    <p>Suggested</p>
                 </div>
 
                 <div className={styles.usersList}>
