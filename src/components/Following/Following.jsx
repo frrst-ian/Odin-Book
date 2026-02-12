@@ -1,18 +1,19 @@
-import useFollowers from "../../hooks/useFollowers";
+import useFollowing from "../../hooks/useFollowing";
 import Nav from "../Nav/Nav";
-import styles from "./followers.module.css";
+import styles from "./following.module.css";
+import Nav from "../Nav/Nav"
 
 export default function Followers() {
-    const { userFollowers, error, loading } = useFollowers();
+    const { userFollowing, error, loading } = useFollowing();
 
     if (loading) return <div className="loading">Loading...</div>;
 
     return (
         <>
             <Nav />
-            <div className={styles.followersWrapper}>
+            <div className={styles.followingWrapper}>
                 <div className={styles.userList}>
-                    {userFollowers.map((u) => (
+                    {userFollowing.map((u) => (
                         <div key={u.id} className={styles.userItem}>
                             <div className={styles.user}>
                                 <img

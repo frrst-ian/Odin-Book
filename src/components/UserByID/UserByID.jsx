@@ -25,10 +25,18 @@ export default function UserById() {
                             src={user.profilePicture}
                             alt="PFP"
                         />
-                        <Button
-                            label={"Followers"}
-                            task={() => navigateToFollowers(user.id)}
-                        ></Button>
+                        <div className={styles.followInfoBtnWrapper}>
+                            <Button
+                                label={"Followers"}
+                                task={() => navigateToFollowers(user.id)}
+                                type={"stripped"}
+                            ></Button>
+                            <Button
+                                label={"Following"}
+                                task={() => navigateToFollowers(user.id)}
+                                type={"stripped"}
+                            ></Button>
+                        </div>
                         <h3 className={styles.name}>{user.name}</h3>
                         <div className={styles.bio}>
                             {user.bio}

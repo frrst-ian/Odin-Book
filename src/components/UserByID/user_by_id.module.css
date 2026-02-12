@@ -29,6 +29,14 @@ img.pfp {
     font-size: 1.7rem;
 }
 
+.followInfoBtnWrapper {
+    display: flex;
+    gap: 0.85rem;
+    margin: 1rem;
+}
+
+
+
 .bio > p {
     font-size: 0.95rem;
     color: #949599;

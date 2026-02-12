@@ -5,6 +5,7 @@ import Users from "./components/Users/Users";
 import UserByID from "./components/UserByID/UserByID";
 import OAuthCallback from "./components/OAuthCallback/OAuthCallback";
 import Followers from "./components/Followers/Followers";
+import Following from "./components/Following/Following";
 import Posts from "./components/Posts/Posts";
 
 const AppRoutes = () => {
@@ -17,6 +18,7 @@ const AppRoutes = () => {
             <Route path="users/:id" element={<UserByID />} />
             <Route path="auth/callback" element={<OAuthCallback />} />
             <Route path="followers/:id" element={<Followers />} />
+            <Route path="following" element={<Following />} />
             <Route path="posts" element={<Posts />} />
         </Routes>
     );

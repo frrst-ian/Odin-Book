@@ -6,25 +6,25 @@ const client = axios.create({
     baseURL: "http://localhost:3000/api",
 });
 
-export default function useFollowers() {
-    const [userFollowers, setUserFollowers] = useState([]);
+export default function useFollowing() {
+    const [userFollowing, setUserFollowing] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
     const { id } = useParams();
 
     useEffect(() => {
-        const fetchUserFollower = async () => {
+        const fetchUserFollowing = async () => {
             try {
-                const res = await client.get(`/f/${id}`, {
+                const res = await client.get(`/f`, {
                     headers: {
                         Authorization: `Bearer ${localStorage.getItem("token")} `,
                     },
                 });
-                const userFollowers = res.data;
-                setUserFollowers(userFollowers);
-                if (userFollowers.length === 0) {
-                    setError("User has no follower.");
+                const userFollowing = res.data;
+                setUserFollowing(userFollowing);
+                if (userFollowing.length === 0) {
+                    setError("User doesn't follow anyone.");
                 } else {
                     setError(null);
                 }
@@ -36,11 +36,11 @@ export default function useFollowers() {
             }
         };
 
-        fetchUserFollower();
+        fetchUserFollowing();
     }, [id]);
 
     return {
-        userFollowers,
+        userFollowing,
         loading,
         error,
     };
