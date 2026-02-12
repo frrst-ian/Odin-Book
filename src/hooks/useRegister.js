@@ -19,9 +19,8 @@ export default function useRegister() {
             );
 
             const userData = response.data;
-            // console.log("userData:", userData);
             login(userData.token, userData.user);
-            navigate("/w");
+            navigate("/posts");
             return userData;
         } catch (err) {
             const errors = err.response.data.errors;

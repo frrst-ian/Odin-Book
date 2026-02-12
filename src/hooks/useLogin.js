@@ -22,7 +22,7 @@ export default function useLogin() {
 
             const userData = await response.data;
             login(userData.token, userData.user);
-            navigate("/users");
+            navigate("/posts");
         } catch (err) {
             console.log(err.response)
             setError(err.response.data.error)

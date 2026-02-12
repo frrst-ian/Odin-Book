@@ -1,29 +1,25 @@
-import { useState, useEffect } from "react";
 import axios from "axios";
-import { useParams } from "react-router-dom";
+import { useState, useEffect } from "react";
 
 const client = axios.create({
     baseURL: "http://localhost:3000/api",
 });
 
-export default function useFollowers() {
-    const [userFollowers, setUserFollowers] = useState([]);
+export default function usePost() {
+    const [posts, setPosts] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
-    const { id } = useParams();
-
     useEffect(() => {
-        const fetchUserFollower = async () => {
-            console.log("id:" , id)
+        const fetchPosts = async () => {
             try {
-                const res = await client.get(`/f/${id}`, {
+                const res = await client.get("/p", {
                     headers: {
                         Authorization: `Bearer ${localStorage.getItem("token")} `,
                     },
                 });
                 const userData = res.data;
-                setUserFollowers(userData);
+                setPosts(userData);
             } catch (err) {
                 console.error(err.response.data);
                 setError(err.response.data);
@@ -32,12 +28,8 @@ export default function useFollowers() {
             }
         };
 
-        fetchUserFollower();
-    }, [id]);
+        fetchPosts();
+    }, []);
 
-    return {
-        userFollowers,
-        loading,
-        error,
-    };
+    return { posts, loading, error };
 }

@@ -22,7 +22,7 @@ export default function useUsers() {
             const usersData = await response.data;
             setUsers(usersData);
             if (usersData.length === 0) {
-                setError("User does not exist");
+                setError("There are no users available.");
             } else {
                 setError(null);
             }

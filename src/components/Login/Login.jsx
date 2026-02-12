@@ -63,7 +63,7 @@ export default function Login() {
                             className={styles.btnOAuth}
                             onClick={() => handleOAuthLogin("github")}
                         >
-                            Login with Github
+                            Continue with Github
                         </button>
                         
                         <a

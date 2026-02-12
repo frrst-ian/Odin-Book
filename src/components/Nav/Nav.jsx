@@ -1,7 +1,7 @@
 import { useState, useContext } from "react";
 import styles from "./nav.module.css";
 import useOutsideClick from "../../hooks/useOutsideClick";
-import { MessageCircle, UsersRound, LogOut, CircleUser } from "lucide-react";
+import { Rss, UsersRound, LogOut, CircleUser } from "lucide-react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { UserContext } from "../../context/UserContext";
 
@@ -36,10 +36,10 @@ export default function Nav() {
                                 ? [styles.navItem, styles.active].join(" ")
                                 : styles.navItem
                         }
-                        to="/conversations"
+                        to="/posts"
                     >
-                        <MessageCircle className={styles.navIcon} />
-                        Chats
+                        <Rss className={styles.navIcon} />
+                        Feed
                     </NavLink>
                     <NavLink
                         className={({ isActive }) =>

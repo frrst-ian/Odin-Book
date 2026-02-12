@@ -40,7 +40,7 @@ export default function useFollow() {
                 );
             } else {
                 await client.post("/f", { followedUserID: userId });
-                const res = await client.get("/f/fw");
+                const res = await client.get("/f");
                 setUserFollowing(res.data);
             }
         } catch (err) {
