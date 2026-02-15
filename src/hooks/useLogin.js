@@ -24,8 +24,7 @@ export default function useLogin() {
             login(userData.token, userData.user);
             navigate("/posts");
         } catch (err) {
-            console.log(err.response)
-            setError(err.response.data.error)
+            setError(err.response.data.errors)
         } finally {
             setSubmitting(false);
         }

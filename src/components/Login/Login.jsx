@@ -19,6 +19,8 @@ export default function Login() {
         window.location.href = `${baseUrl}/auth/${provider}`;
     };
 
+    
+
     return (
         <>
             <div className={styles.loginContainer}>

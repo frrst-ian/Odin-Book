@@ -17,8 +17,8 @@ export default function useFollow() {
                         Authorization: `Bearer ${localStorage.getItem("token")} `,
                     },
                 });
-                const userData = res.data;
-                setUserFollowing(userData);
+                const userFollowing = res.data;
+                setUserFollowing(userFollowing);
             } catch (err) {
                 console.error(err.response.data.error);
             }
@@ -34,13 +34,27 @@ export default function useFollow() {
             );
 
             if (isFollowing) {
-                await client.delete("/f", { data: { followedUserID: userId } });
+                await client.delete("/f", {
+                    headers: {
+                        Authorization: `Bearer ${localStorage.getItem("token")} `,
+                    },
+                    data: { followedUserID: userId },
+                });
                 setUserFollowing((prev) =>
                     prev.filter((user) => user.id !== userId),
                 );
             } else {
-                await client.post("/f", { followedUserID: userId });
-                const res = await client.get("/f");
+                await client.post("/f", {
+                    headers: {
+                        Authorization: `Bearer ${localStorage.getItem("token")} `,
+                    },
+                    followedUserID: userId,
+                });
+                const res = await client.get("/f", {
+                    headers: {
+                        Authorization: `Bearer ${localStorage.getItem("token")} `,
+                    },
+                });
                 setUserFollowing(res.data);
             }
         } catch (err) {

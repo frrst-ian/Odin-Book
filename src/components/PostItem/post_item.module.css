@@ -6,33 +6,18 @@
     gap: 1rem;
 }
 
-.postList {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    padding: 0.9rem;
-    gap: 1rem;
-    width: 100%;
-}
-
 .postItem {
     display: flex;
     justify-content: start;
-    align-items: center;
+    flex-direction: column;
+    align-items: start;
     padding: 2rem;
     border-radius: 0.4rem;
     width: 550px;
     position: relative;
     background-color: var(--s-background);
-}
-
-.post {
-    display: flex;
-    gap: 0.95rem;
-    flex-direction: column;
-    justify-content: start;
     flex: 1;
+    gap: 0.95rem;
 }
 
 .user {
@@ -44,6 +29,7 @@
     cursor: pointer;
     padding: 0.3rem;
     border-radius: 0.2rem;
+    width: 100%;
 }
 
 .user:hover {

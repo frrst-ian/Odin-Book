@@ -4,7 +4,6 @@ import axios from "axios";
 
 const client = axios.create({
     baseURL: "http://localhost:3000/api",
-    headers: { Authorization: `Bearer ${localStorage.getItem("token")} ` },
 });
 
 export default function useUserById() {
@@ -17,7 +16,11 @@ export default function useUserById() {
     useEffect(() => {
         const fetchUserData = async () => {
             try {
-                const res = await client.get(`/u/${id}`);
+                const res = await client.get(`/u/${id}`, {
+                    headers: {
+                        Authorization: `Bearer ${localStorage.getItem("token")} `,
+                    },
+                });
                 const userData = res.data;
                 setUser(userData);
             } catch (err) {

@@ -1,7 +1,6 @@
 import useFollowing from "../../hooks/useFollowing";
 import Nav from "../Nav/Nav";
 import styles from "./following.module.css";
-import Nav from "../Nav/Nav"
 
 export default function Followers() {
     const { userFollowing, error, loading } = useFollowing();

@@ -7,6 +7,7 @@ import OAuthCallback from "./components/OAuthCallback/OAuthCallback";
 import Followers from "./components/Followers/Followers";
 import Following from "./components/Following/Following";
 import Posts from "./components/Posts/Posts";
+import PostItem from "./components/PostItem/PostItem";
 
 const AppRoutes = () => {
     return (
@@ -20,6 +21,7 @@ const AppRoutes = () => {
             <Route path="followers/:id" element={<Followers />} />
             <Route path="following" element={<Following />} />
             <Route path="posts" element={<Posts />} />
+            <Route path="posts/:id" element={<PostItem />} />
         </Routes>
     );
 };

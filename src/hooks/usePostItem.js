@@ -1,64 +1,55 @@
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import axios from "axios";
-import { useState, useEffect } from "react";
 
 const client = axios.create({
     baseURL: "http://localhost:3000/api",
 });
 
-export default function usePost() {
-    const [posts, setPosts] = useState([]);
+export default function usePostItem() {
+    const [post, setPost] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
+    const { id } = useParams();
+
     useEffect(() => {
-        const fetchPosts = async () => {
+        const fetchPost = async () => {
             try {
-                const res = await client.get("/p", {
+                const response = await client.get(`/p/${id}`, {
                     headers: {
                         Authorization: `Bearer ${localStorage.getItem("token")} `,
                     },
                 });
-                const postsData = res.data;
-                setPosts(postsData);
+                const postData = response.data;
+                setPost(postData);
             } catch (err) {
-                console.error(err.response.data);
-                setError(err.response.data);
+                setError(err.data.response.error || "Something went wrong!");
             } finally {
                 setLoading(false);
             }
         };
-
-        fetchPosts();
-    }, []);
+        fetchPost();
+    }, [id]);
 
     const toggleLike = async (postId) => {
         const user = JSON.parse(localStorage.getItem("user"));
         const userId = user.id;
 
-        const prevPosts = posts;
-
-        const post = posts.find((p) => p.id === postId);
-
-        if (!post) return;
+        const prevPost = post;
 
         const isLiked = post.likes.includes(userId);
 
-        setPosts((prev) =>
-            prev.map((p) =>
-                p.id === postId
-                    ? {
-                          ...p,
-                          likes: isLiked
-                              ? p.likes.filter((id) => id !== userId)
-                              : [...p.likes, userId],
-                          likesCount: isLiked
-                              ? p.likesCount - 1
-                              : p.likesCount + 1,
-                      }
-                    : p,
-            ),
-        );
-        
+        setPost({
+            ...post,
+            likes: isLiked
+                ? post.likes.filter((id) => id !== userId)
+                : [...post.likes, userId],
+            likesCount: isLiked ? post.likesCount - 1 : post.likesCount + 1,
+        });
+
+        console.log(post);
+
         try {
             if (isLiked) {
                 await client.delete("/p/ul", {
@@ -81,9 +72,9 @@ export default function usePost() {
         } catch (err) {
             console.error("Toggle like failed", err);
             setError(err?.response?.data || "Something went wrong");
-            setPosts(prevPosts);
+            setPost(prevPost);
         }
     };
 
-    return { posts, loading, error, toggleLike };
+    return { post, loading, error, toggleLike };
 }
