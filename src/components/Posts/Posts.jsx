@@ -2,10 +2,30 @@ import { NavLink } from "react-router-dom";
 import usePosts from "../../hooks/usePosts";
 import Nav from "../Nav/Nav";
 import styles from "./posts.module.css";
-import { Heart, MessageSquare } from "lucide-react";
+import { Heart, MessageSquare, ImageUp } from "lucide-react";
+import { useEffect, useState } from "react";
 
 export default function Posts() {
-    const { toggleLike, posts, error, loading } = usePosts();
+    const { toggleLike, posts, error, loading, submitPost, postSubmitting } =
+        usePosts();
+    const [postContent, setPostContent] = useState("");
+    const [file, setSelectedFile] = useState(null);
+
+    const [filePrev, setFilePrev] = useState(null);
+
+    useEffect(() => {
+        const filePreview = () => {
+            if (!file) return;
+            const reader = new FileReader();
+
+            reader.onloadend = () => {
+                setFilePrev(reader.result);
+            };
+
+            reader.readAsDataURL(file);
+        };
+        filePreview();
+    }, [file]);
 
     if (loading) return <div className="loading">Loading...</div>;
     if (error) return <div>{error}</div>;
@@ -17,10 +37,69 @@ export default function Posts() {
     const user = JSON.parse(localStorage.getItem("user"));
     const userId = user.id;
 
+    const handleSubmitPost = () => {
+        if (!postContent.trim()) return;
+
+        const form = new FormData();
+
+        form.append("content", postContent);
+        form.append("postImage", file);
+
+        submitPost(form);
+        setPostContent("");
+        setFilePrev(null);
+    };
+
+    const handleFileChange = (e) => {
+        setSelectedFile(e.target.files[0]);
+    };
+
     return (
         <>
             <Nav />
             <div className={styles.postWrapper}>
+                <form
+                    className={styles.createPostWrapper}
+                    action={handleSubmitPost}
+                >
+                    <textarea
+                        rows={"6"}
+                        placeholder="Post something..."
+                        name="content"
+                        value={postContent}
+                        onChange={(e) => setPostContent(e.target.value)}
+                        className={styles.textarea}
+                    ></textarea>
+                    <div className={styles.bottomWrapper}>
+                        <button
+                            className={styles.postBtn}
+                            disabled={postSubmitting}
+                        >
+                            {postSubmitting ? "Posting..." : "Post"}
+                        </button>
+                        <input
+                            type="file"
+                            id="post-image"
+                            className={styles.fileUpload}
+                            onChange={handleFileChange}
+                            accept="image/*"
+                        />
+                        <label
+                            htmlFor="post-image"
+                            className={styles.customFileUpload}
+                        >
+                            <ImageUp className={styles.imgUp} />
+                        </label>
+                        {filePrev && (
+                            <img
+                                className={styles.imgPrev}
+                                src={filePrev}
+                                alt="Preview"
+                            />
+                        )}
+                    </div>
+                </form>
+
                 <div className={styles.postList}>
                     {posts.map((p) => (
                         <div key={p.id} className={styles.postItem}>
@@ -29,35 +108,38 @@ export default function Posts() {
                                     <img
                                         loading="eager"
                                         className={styles.pfp}
-                                        src={p.profilePicture}
+                                        src={p.author?.profilePicture}
                                     />
-                                    <p>{p.name}</p>
+                                    <div className={styles.left}>
+                                        <p>{p.author?.name}</p>
+                                        <p className={styles.postDate}>
+                                            {new Date(
+                                                p.createdAt,
+                                            ).toLocaleDateString("en-US", {
+                                                year: "numeric",
+                                                month: "short",
+                                                day: "numeric",
+                                                hour: "numeric",
+                                                minute: "numeric",
+                                            })}
+                                        </p>
+                                    </div>
                                 </div>
-                                <small>
-                                    {new Date(p.createdAt).toLocaleDateString(
-                                        "en-US",
-                                        {
-                                            year: "numeric",
-                                            month: "short",
-                                            day: "numeric",
-                                            hour: "numeric",
-                                            minute: "numeric",
-                                        },
-                                    )}
-                                </small>
                                 <p>{p.content}</p>
-                                <img
-                                    loading="eager"
-                                    className={styles.postImg}
-                                    src={p.postImage}
-                                />
+                                {p.postImage && (
+                                    <img
+                                        loading="eager"
+                                        className={styles.postImg}
+                                        src={p.postImage}
+                                    />
+                                )}{" "}
                                 <div className={styles.heart}>
                                     <div className={styles.heartInfo}>
                                         <Heart
                                             height={28}
                                             width={28}
                                             className={
-                                                p.likes.includes(userId)
+                                                p.likes?.includes(userId)
                                                     ? [
                                                           styles.heartIcon,
                                                           styles.active,

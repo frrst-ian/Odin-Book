@@ -6,6 +6,85 @@
     gap: 1rem;
 }
 
+.createPostWrapper {
+    width: 550px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    background-color: var(--s-background);
+    border-radius: 0.75rem;
+    border: 0.11rem solid var(--secondary);
+    padding: 1rem 1rem 0 1rem;
+}
+
+.bottomWrapper {
+    position: relative;
+    display: flex;
+    height: 54px;
+    margin-bottom: 0.3rem;
+}
+
+.textarea {
+    width: 100%;
+    resize: none;
+    background-color: var(--s-background);
+    color: var(--text);
+    border: none;
+    border-radius: 0.75rem;
+}
+
+.textarea::placeholder {
+    color: var(--text2);
+}
+
+.textarea:focus-visible {
+    outline: none;
+}
+
+.postBtn {
+    position: absolute;
+    bottom: 0.4rem;
+    right: 1rem;
+    cursor: pointer;
+    background-color: var(--secondary);
+    color: var(--text);
+    border: none;
+    border-radius: 0.45rem;
+    padding: 0.1rem 1.2rem;
+}
+
+.postBtn:hover {
+    background-color: var(--secondary);
+}
+
+.fileUpload {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+}
+
+.customFileUpload {
+    position: absolute;
+    bottom: 0.7rem;
+    left: 0.9rem;
+    cursor: pointer;
+}
+
+.imgPrev {
+    position: absolute;
+    width: 60px;
+    height: 50px;
+    left: 3.5rem;
+    bottom: 0.2rem;
+    object-fit: cover;
+    border-radius: 0.34rem;
+}
+
 .postList {
     display: flex;
     justify-content: center;
@@ -48,6 +127,11 @@
 
 .user:hover {
     background-color: var(--hover-bg);
+}
+
+.postDate {
+    color: var(--text2);
+    font-size: 0.85rem;
 }
 
 img.pfp {

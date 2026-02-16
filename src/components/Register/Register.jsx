@@ -107,6 +107,7 @@ const Register = () => {
                             type="file"
                             onChange={handleFileChange}
                             required
+                            accept="image/*"
                         />
                         <input
                             className={styles.registerInput}

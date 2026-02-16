@@ -11,9 +11,6 @@ export default function Comments({ postId }) {
     if (loading) return <div className="loading">Loading...</div>;
     if (error) return <div className="error">{error.error}</div>;
 
-    // const user = JSON.parse(localStorage.getItem("user"));
-    // const userId = user.id;
-
     const handleCommentSubmission = (formData) => {
         if (!comment.trim()) return;
 

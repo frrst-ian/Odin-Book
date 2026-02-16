@@ -43,11 +43,13 @@ export default function PostItem() {
                             </p>
                         </div>
                         <p>{post.content}</p>
-                        <img
-                            loading="eager"
-                            className={styles.postImg}
-                            src={post.postImage}
-                        />
+                        {post.postImage && (
+                            <img
+                                loading="eager"
+                                className={styles.postImg}
+                                src={post.postImage}
+                            />
+                        )}{" "}
                         <div className={styles.heart}>
                             <div className={styles.heartInfo}>
                                 <Heart

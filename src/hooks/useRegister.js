@@ -24,7 +24,6 @@ export default function useRegister() {
             return userData;
         } catch (err) {
             const errors = err.response.data.errors;
-            console.log("Error:", errors);
             setError(errors);
             setSubmitting(false);
         } finally {

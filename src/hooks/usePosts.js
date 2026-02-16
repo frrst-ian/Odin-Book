@@ -8,6 +8,7 @@ const client = axios.create({
 export default function usePost() {
     const [posts, setPosts] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [postSubmitting, setPostSubmitting] = useState(false);
     const [error, setError] = useState(null);
 
     useEffect(() => {
@@ -21,7 +22,7 @@ export default function usePost() {
                 const postsData = res.data;
                 setPosts(postsData);
             } catch (err) {
-                console.error(err.response.data);
+                console.error(err.response?.data);
                 setError(err.response.data);
             } finally {
                 setLoading(false);
@@ -58,7 +59,7 @@ export default function usePost() {
                     : p,
             ),
         );
-        
+
         try {
             if (isLiked) {
                 await client.delete("/p/ul", {
@@ -85,5 +86,23 @@ export default function usePost() {
         }
     };
 
-    return { posts, loading, error, toggleLike };
+    const submitPost = async (form) => {
+        try {
+            setPostSubmitting(true);
+            const res = await client.post(`/p`, form, {
+                headers: {
+                    Authorization: `Bearer ${localStorage.getItem("token")} `,
+                },
+            });
+
+            const newPost = res.data;
+            setPosts([newPost, ...posts]);
+        } catch (err) {
+            setError(err.message || "Something went wrong");
+        } finally {
+            setPostSubmitting(false);
+        }
+    };
+
+    return { posts, loading, error, toggleLike, submitPost,postSubmitting };
 }
