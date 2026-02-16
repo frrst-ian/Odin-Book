@@ -1,0 +1,77 @@
+img.pfp {
+    border-radius: 50%;
+    width: 2.5rem;
+    height: 2.5rem;
+    object-fit: cover;
+}
+
+.commentInfo {
+    display: flex;
+    gap: 1rem;
+}
+
+.userInfo {
+    display: flex;
+    gap: 0.75rem;
+}
+
+.cDate,
+.cContent {
+    color: #b5b5be;
+}
+
+.cDate {
+    font-size: 1rem;
+    align-items: center;
+}
+
+.commentsWrapper > p {
+    text-align: center;
+}
+
+.commentsWrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.commentsInfo {
+}
+
+.commentsIcon {
+    fill: var(--secondary);
+}
+
+.textarea {
+    width: 100%;
+    resize: none;
+    background-color: var(--s-background);
+    color: var(--text);
+    border-radius: 0.75rem;
+    border: 0.12rem solid var(--accent);
+    padding: 1rem;
+}
+
+.textarea:focus-visible {
+    outline: none;
+}
+
+.commentForm {
+    position: relative;
+}
+
+.sendBtn {
+    border-radius: 50%;
+    cursor: pointer;
+    background: var(--accent);
+    border: none;
+    position: absolute;
+    right: 12px;
+    bottom: 16px;
+    padding: 0.35rem;
+}
+
+.sendBtn:hover {
+    background: var(--secondary);
+}

@@ -48,8 +48,6 @@ export default function usePostItem() {
             likesCount: isLiked ? post.likesCount - 1 : post.likesCount + 1,
         });
 
-        console.log(post);
-
         try {
             if (isLiked) {
                 await client.delete("/p/ul", {
@@ -76,5 +74,25 @@ export default function usePostItem() {
         }
     };
 
-    return { post, loading, error, toggleLike };
+    const submitComment = async (postId, content) => {
+        try {
+            const res = await client.post(
+                `/p/${postId}/c`,
+                { content },
+                {
+                    headers: {
+                        Authorization: `Bearer ${localStorage.getItem("token")} `,
+                    },
+                },d 
+            );
+
+            const postData = res.data;
+        } catch (err) {
+            setError(err.message || "Something went wrong");
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    return { post, loading, error, toggleLike, submitComment };
 }

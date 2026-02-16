@@ -98,7 +98,7 @@ img.postImg {
 }
 
 .commentsIcon {
-    fill: var(--secondary);
+    fill: #302e32;
 }
 @media (max-width: 580px) {
     .postItem {
