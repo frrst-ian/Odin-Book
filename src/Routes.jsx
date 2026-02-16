@@ -19,7 +19,7 @@ const AppRoutes = () => {
             <Route path="users/:id" element={<UserByID />} />
             <Route path="auth/callback" element={<OAuthCallback />} />
             <Route path="followers/:id" element={<Followers />} />
-            <Route path="following" element={<Following />} />
+            <Route path="following/:id" element={<Following />} />
             <Route path="posts" element={<Posts />} />
             <Route path="posts/:id" element={<PostItem />} />
         </Routes>

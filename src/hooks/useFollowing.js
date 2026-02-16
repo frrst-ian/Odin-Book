@@ -16,7 +16,7 @@ export default function useFollowing() {
     useEffect(() => {
         const fetchUserFollowing = async () => {
             try {
-                const res = await client.get(`/f`, {
+                const res = await client.get(`/f/following/${id}`, {
                     headers: {
                         Authorization: `Bearer ${localStorage.getItem("token")} `,
                     },

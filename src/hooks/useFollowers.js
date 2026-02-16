@@ -16,7 +16,7 @@ export default function useFollowers() {
     useEffect(() => {
         const fetchUserFollower = async () => {
             try {
-                const res = await client.get(`/f/${id}`, {
+                const res = await client.get(`/f/follower/${id}`, {
                     headers: {
                         Authorization: `Bearer ${localStorage.getItem("token")} `,
                     },

@@ -1,6 +1,5 @@
 .userInfoWrapper {
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
     height: 600px;
@@ -8,14 +7,26 @@
 
 .userInfo {
     display: flex;
-    flex-direction: column;
     justify-content: center;
+    flex-direction: column;
     align-items: center;
     padding: 1rem;
-    width: 400px;
+    width: 475px;
     border-radius: 0.6rem;
-    height: 500px;
+    min-height:  350px;
     background: #1e212b;
+    gap: 1rem;
+}
+
+.top {
+    width: 100%;
+    display: flex;
+    margin-bottom: 1rem;
+}
+
+.bottom {
+    width: 100%;
+    padding: 1rem;
 }
 
 img.pfp {
@@ -26,27 +37,52 @@ img.pfp {
 }
 
 .name {
-    font-size: 1.7rem;
+    font-size: 1.4rem;
 }
 
 .followInfoBtnWrapper {
     display: flex;
     gap: 0.85rem;
-    margin: 1rem;
 }
 
+.left {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    gap: 1rem;
+    margin: 0.75rem;
+}
 
-
-.bio > p {
+.bio {
     font-size: 0.95rem;
-    color: #949599;
-    text-align: center;
+    color: var(--text2);
+    text-align: start;
+}
+
+.followBtnWrapper {
+    display: flex;
+    gap: 0.35rem;
+    cursor: pointer;
+}
+
+.count {
+    color: var(--primary);
+    font-weight: bold;
+}
+
+.followInfoBtn {
+    background: none;
+    color: white;
+    border: none;
+    padding: 0;
+    margin: 0;
+    cursor: pointer;
 }
 
 @media (max-width: 460px) {
     .userInfo {
         width: 100%;
-    }   
+    }
 
     .userInfoWrapper {
         padding: 1.5rem;

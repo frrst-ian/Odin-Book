@@ -6,13 +6,13 @@
     gap: 1rem;
 }
 
-.usersList {
+.userList {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
     padding: 0.9rem;
-    gap: 1rem;
+    gap: 1.4rem;
     width: 100%;
 }
 
@@ -44,4 +44,43 @@ img.pfp {
     width: 2.5rem;
     height: 2.5rem;
     object-fit: cover;
+}
+
+.actionBtnsWrapper {
+    display: flex;
+    gap: 0.8rem;
+}
+
+.actionBtn {
+    padding: 0.1rem 1rem;
+}
+
+.actionBtnIcon {
+    background: var(--secondary);
+    border-radius: 0.45rem;
+    display: flex;
+    align-items: center;
+}
+
+.tooltip {
+    display: none;
+}
+
+.actionBtnIcon:hover {
+    background-color: #7848e8;
+}
+
+.actionBtn:hover .tooltip {
+    position: absolute;
+    display: block;
+    top: 2.7rem;
+    right: 0rem;
+    font-size: 0.85rem;
+    background: #2c2d38;
+    padding: 0.35rem;
+    border-radius: 0.4rem;
+}
+
+.actionBtn:hover .msgTooltip {
+    right: -0.2rem;
 }
