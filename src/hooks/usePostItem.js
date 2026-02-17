@@ -76,17 +76,15 @@ export default function usePostItem() {
 
     const submitComment = async (postId, content) => {
         try {
-            const res = await client.post(
+            await client.post(
                 `/p/${postId}/c`,
                 { content },
                 {
                     headers: {
                         Authorization: `Bearer ${localStorage.getItem("token")} `,
                     },
-                },d 
+                },
             );
-
-            const postData = res.data;
         } catch (err) {
             setError(err.message || "Something went wrong");
         } finally {

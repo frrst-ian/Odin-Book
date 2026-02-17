@@ -61,7 +61,11 @@ export default function Users() {
                                                 ? "Following"
                                                 : "Follow"
                                         }
-                                        type={"secondary"}
+                                        type={
+                                            isFollowing(u.id)
+                                                ? "secondaryVar2"
+                                                : "secondary"
+                                        }
                                         task={() => toggleFollow(u.id)}
                                     ></Button>
                                 </div>

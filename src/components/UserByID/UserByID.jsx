@@ -2,10 +2,16 @@ import useUserByID from "../../hooks/useUserByID";
 import styles from "./user_by_id.module.css";
 import Nav from "../Nav/Nav";
 import { useNavigate } from "react-router-dom";
+import useFollow from "../../hooks/useFollow";
 
 export default function UserById() {
     const { user, loading, error } = useUserByID();
     const navigate = useNavigate();
+    const { toggleFollow, userFollowing } = useFollow();
+
+    const isFollowing = (userId) => {
+        return userFollowing.some((user) => user.id === userId);
+    };
 
     if (loading) return <div className="loading">Loading...</div>;
     if (error) return <div>{error}</div>;
@@ -36,36 +42,51 @@ export default function UserById() {
                                 <h4 className={styles.name}>{user.name}</h4>
                                 <div className={styles.followInfoBtnWrapper}>
                                     <div
-                                        onClick={() => navigateToFollowers(user.id)}
+                                        onClick={() =>
+                                            navigateToFollowers(user.id)
+                                        }
                                         className={styles.followBtnWrapper}
                                     >
                                         <p className={styles.count}>
                                             {user._count.followedBy}
                                         </p>
-                                        <button className={styles.followInfoBtn}>
+                                        <button
+                                            className={styles.followInfoBtn}
+                                        >
                                             followers
                                         </button>
                                     </div>
-                            
-                                       <div
-                                        onClick={() => navigateToFollowing(user.id)}
+
+                                    <div
+                                        onClick={() =>
+                                            navigateToFollowing(user.id)
+                                        }
                                         className={styles.followBtnWrapper}
                                     >
                                         <p className={styles.count}>
                                             {user._count.following}
                                         </p>
-                                        <button className={styles.followInfoBtn}>
+                                        <button
+                                            className={styles.followInfoBtn}
+                                        >
                                             following
                                         </button>
                                     </div>
-                            
-                            
                                 </div>
                                 <div className={styles.bio}>{user.bio}</div>
                             </div>
                         </div>
-                        <div className={styles.bottom} >
-                            <button> Follow </button>
+                        <div className={styles.bottom}>
+                            <button
+                                className={
+                                    isFollowing(user.id)
+                                        ? styles.followingBtn
+                                        : styles.followBtn
+                                }
+                                onClick={() => toggleFollow(user.id)}
+                            >
+                                {isFollowing(user.id) ? "Following" : "Follow"}
+                            </button>
                         </div>
                     </div>
                 )}

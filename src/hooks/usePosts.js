@@ -23,7 +23,7 @@ export default function usePost() {
                 setPosts(postsData);
             } catch (err) {
                 console.error(err.response?.data);
-                setError(err.response.data);
+                setError(err.response?.data);
             } finally {
                 setLoading(false);
             }

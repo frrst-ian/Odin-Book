@@ -175,15 +175,35 @@ img.postImg {
     fill: #f74444;
 }
 
+.heartIcon.active:hover {
+    fill: var(--s-background);
+}
+
+
 .commentBtnWrapper {
     display: flex;
     gap: 0.45rem;
     cursor: pointer;
 }
 
+.closeBtn {
+        position: absolute;
+    left: 6rem;
+    background: var(--s-background);
+    color: var(--primary);
+    border: none;
+    border-radius: 0.35rem;
+    cursor: pointer;
+}
+
+.closeBtn:hover {
+    background-color: var(--background);
+}
+
 .commentsIcon {
     fill: #302e32;
 }
+
 @media (max-width: 580px) {
     .postItem {
         width: 100%;

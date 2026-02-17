@@ -51,28 +51,26 @@ export default function PostItem() {
                             />
                         )}{" "}
                         <div className={styles.heart}>
-                            <div className={styles.heartInfo}>
-                                <Heart
-                                    height={28}
-                                    width={28}
-                                    className={
-                                        post.likes.includes(userId)
-                                            ? [
-                                                  styles.heartIcon,
-                                                  styles.active,
-                                              ].join(" ")
-                                            : styles.heartIcon.active
-                                    }
-                                    onClick={() => toggleLike(post.id)}
-                                />
-                                <p>{post.likesCount}</p>
-                            </div>
+                            {!user?.isGuest && (
+                                <div className={styles.heartInfo}>
+                                    <Heart
+                                        height={28}
+                                        width={28}
+                                        className={
+                                            post.likes.includes(userId)
+                                                ? [
+                                                      styles.heartIcon,
+                                                      styles.active,
+                                                  ].join(" ")
+                                                : styles.heartIcon.active
+                                        }
+                                        onClick={() => toggleLike(post.id)}
+                                    />
+                                    <p>{post.likesCount}</p>
+                                </div>
+                            )}
                         </div>
-                        <Comments
-                            // key={post.comments.id}
-                            // comments={post.comments}
-                            postId={post.id}
-                        />
+                        <Comments postId={post.id} />
                     </div>
                 )}
             </div>

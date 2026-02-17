@@ -35,7 +35,16 @@
 }
 
 .secondary:hover {
-    background: #7848e8;
+    background: var(--s-background);
+}
+
+.secondaryVar2 {
+    composes: secondary;
+    background: var(--s-background);
+}
+
+.secondaryVar2:hover {
+    background: var(--primary);
 }
 
 .stripped {

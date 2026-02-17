@@ -2,11 +2,19 @@ import { useState } from "react";
 import useLogin from "../../hooks/useLogin";
 import Button from "../Button/Button";
 import styles from "./login.module.css";
+import { useContext } from "react";
+import { useNavigate } from "react-router-dom";
+import { UserContext } from "../../context/UserContext";
+import { Github } from "lucide-react";
 
 export default function Login() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const { loginUser, error, submitting } = useLogin();
+
+    const { loginAsGuest } = useContext(UserContext);
+    const [guestLoading, setGuestLoading] = useState(false);
+    const navigate = useNavigate();
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -19,14 +27,21 @@ export default function Login() {
         window.location.href = `${baseUrl}/auth/${provider}`;
     };
 
-    
+    const handleGuestLogin = async () => {
+        setGuestLoading(true);
+        const success = await loginAsGuest();
+        if (success) navigate("/posts");
+        setGuestLoading(false);
+    };
 
     return (
         <>
             <div className={styles.loginContainer}>
                 <div className={styles.loginFormContainer}>
                     <form className={styles.loginForm} onSubmit={handleSubmit}>
-                        <h2 className={styles.loginHeader}> Login to Odinbook</h2>
+                        <h2 className={styles.loginHeader}>
+                            Login to Odinbook
+                        </h2>
                         {error && <span className={styles.error}>{error}</span>}
                         <input
                             className={styles.loginInput}
@@ -39,7 +54,7 @@ export default function Login() {
                             placeholder="Email"
                             required
                         />
-                    
+
                         <input
                             className={styles.loginInput}
                             type="password"
@@ -51,23 +66,34 @@ export default function Login() {
                             placeholder="Password"
                             required
                         />
-                    
+
                         <Button
                             type="primary"
                             label={submitting ? "Logging in..." : "Login"}
                             status={submitting}
                         ></Button>
-                    
-                        <span>or</span>
+
+                        <div className={styles.dividerWrapper}>
+                            <hr className={styles.line} />
+                            <p className={styles.dividerTxt}>or</p>
+                        </div>
                     </form>
-                    <div className={styles.oauthLogin} >
+                    <div className={styles.oauthLogin}>
                         <button
                             className={styles.btnOAuth}
                             onClick={() => handleOAuthLogin("github")}
                         >
-                            Continue with Github
+                            <Github /> Continue with Github
                         </button>
-                        
+
+                        <button
+                            className={styles.btnGuest}
+                            onClick={handleGuestLogin}
+                            disabled={guestLoading}
+                        >
+                            {guestLoading ? "Loading..." : "Login as Guest"}
+                        </button>
+
                         <a
                             className={styles.btn}
                             rel="noopener noreferrer"

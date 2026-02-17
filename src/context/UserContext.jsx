@@ -44,8 +44,7 @@ const UserProvider = ({ children }) => {
         const profileResponse = await client.get("/u/profile", {
             headers: { Authorization: `Bearer ${token}` },
         });
-        console.log("profile: ", profileResponse);
-        setUser(profileResponse.data);  
+        setUser(profileResponse.data);
         login(token, profileResponse.data);
     };
 
@@ -69,7 +68,6 @@ const UserProvider = ({ children }) => {
 
     const handleOAuthCallback = async (token) => {
         try {
-            console.log("TOKEN:", token);
             await setTokenAndFetchProfile(token);
         } catch (error) {
             console.error("OAuth callback error:", error);
@@ -77,9 +75,21 @@ const UserProvider = ({ children }) => {
         }
     };
 
+    const loginAsGuest = async () => {
+        try {
+            const response = await client.post("/auth/guest");
+            const { token, user } = response.data;
+            login(token, user);
+            return true;
+        } catch (err) {
+            console.error("Guest login failed:", err);
+            return false;
+        }
+    };
+
     return (
         <UserContext.Provider
-            value={{ user, token, login, logout, loading, handleOAuthCallback }}
+            value={{ user, token, login, logout, loading, handleOAuthCallback,loginAsGuest }}
         >
             {children}
         </UserContext.Provider>

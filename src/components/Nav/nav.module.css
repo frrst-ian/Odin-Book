@@ -127,3 +127,23 @@ ul {
     object-fit: cover;
     color: #fff;
 }
+
+.guestBanner {
+    text-align: center;
+    font-size: 0.8rem;
+    color: var(--text2);
+    padding: 0.35rem;
+    background-color: var(--s-background);
+    border-radius: 0.4rem;
+    margin-top: 0.4rem;
+}
+
+.guestBannerLink {
+    color: var(--primary);
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.guestBannerLink:hover {
+    text-decoration: underline;
+}

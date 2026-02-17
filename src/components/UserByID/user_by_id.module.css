@@ -13,8 +13,8 @@
     padding: 1rem;
     width: 475px;
     border-radius: 0.6rem;
-    min-height:  350px;
-    background: #1e212b;
+    min-height: 350px;
+    background: #1b1c21;
     gap: 1rem;
 }
 
@@ -25,8 +25,9 @@
 }
 
 .bottom {
-    width: 100%;
     padding: 1rem;
+    display: flex;
+    width: 100%;
 }
 
 img.pfp {
@@ -72,11 +73,41 @@ img.pfp {
 
 .followInfoBtn {
     background: none;
-    color: white;
+    color: var(--text);
     border: none;
     padding: 0;
     margin: 0;
     cursor: pointer;
+}
+
+.followBtn,
+.followingBtn {
+    border: none;
+    cursor: pointer;
+    border-radius: 0.45rem;
+    padding: 0.45rem;
+    color: var(--text);
+    width: 84px;
+    height: 38px;
+}
+
+.followBtn {
+    padding: 0.1rem 0.55rem;
+    background: var(--secondary);
+    color: var(--text);
+    transition: all 0.3s ease;
+}
+
+.followBtn:hover {
+    background: #2c2e3a;
+}
+
+.followingBtn {
+    background: #2c2e3a;
+}
+
+.followingBtn:hover {
+    background: var(--secondary);
 }
 
 @media (max-width: 460px) {

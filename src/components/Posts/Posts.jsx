@@ -54,51 +54,66 @@ export default function Posts() {
         setSelectedFile(e.target.files[0]);
     };
 
+    const removeFilePrev = () => {
+        setFilePrev(null);
+        setSelectedFile(null);
+    };
+
     return (
         <>
             <Nav />
             <div className={styles.postWrapper}>
-                <form
-                    className={styles.createPostWrapper}
-                    action={handleSubmitPost}
-                >
-                    <textarea
-                        rows={"6"}
-                        placeholder="Post something..."
-                        name="content"
-                        value={postContent}
-                        onChange={(e) => setPostContent(e.target.value)}
-                        className={styles.textarea}
-                    ></textarea>
-                    <div className={styles.bottomWrapper}>
-                        <button
-                            className={styles.postBtn}
-                            disabled={postSubmitting}
-                        >
-                            {postSubmitting ? "Posting..." : "Post"}
-                        </button>
-                        <input
-                            type="file"
-                            id="post-image"
-                            className={styles.fileUpload}
-                            onChange={handleFileChange}
-                            accept="image/*"
-                        />
-                        <label
-                            htmlFor="post-image"
-                            className={styles.customFileUpload}
-                        >
-                            <ImageUp className={styles.imgUp} />
-                        </label>
-                        {filePrev && (
-                            <img
-                                className={styles.imgPrev}
-                                src={filePrev}
-                                alt="Preview"
+                {!user?.isGuest && (
+                    <form
+                        className={styles.createPostWrapper}
+                        action={handleSubmitPost}
+                    >
+                        <textarea
+                            rows={"6"}
+                            placeholder="Post something..."
+                            name="content"
+                            value={postContent}
+                            onChange={(e) => setPostContent(e.target.value)}
+                            className={styles.textarea}
+                        ></textarea>
+                        <div className={styles.bottomWrapper}>
+                            <button
+                                className={styles.postBtn}
+                                disabled={postSubmitting}
+                            >
+                                {postSubmitting ? "Posting..." : "Post"}
+                            </button>
+                            <input
+                                type="file"
+                                id="post-image"
+                                className={styles.fileUpload}
+                                onChange={handleFileChange}
+                                accept="image/*"
                             />
-                        )}
-                    </div>
-                </form>
+                            <label
+                                htmlFor="post-image"
+                                className={styles.customFileUpload}
+                            >
+                                <ImageUp className={styles.imgUp} />
+                            </label>
+                            {filePrev && (
+                                <div>
+                                    <img
+                                        className={styles.imgPrev}
+                                        src={filePrev}
+                                        alt="Preview"
+                                    />
+                                    <button
+                                        className={styles.closeBtn}
+                                        onClick={() => removeFilePrev()}
+                                    >
+                                        x
+                                    </button>
+                                </div>
+                            )}
+                        </div>
+                    </form>
+                )}
 
                 <div className={styles.postList}>
                     {posts.map((p) => (
@@ -134,22 +149,24 @@ export default function Posts() {
                                     />
                                 )}{" "}
                                 <div className={styles.heart}>
-                                    <div className={styles.heartInfo}>
-                                        <Heart
-                                            height={28}
-                                            width={28}
-                                            className={
-                                                p.likes?.includes(userId)
-                                                    ? [
-                                                          styles.heartIcon,
-                                                          styles.active,
-                                                      ].join(" ")
-                                                    : styles.heartIcon.active
-                                            }
-                                            onClick={() => toggleLike(p.id)}
-                                        />
-                                        <p>{p.likesCount}</p>
-                                    </div>
+                                    {!user?.isGuest && (
+                                        <div className={styles.heartInfo}>
+                                            <Heart
+                                                height={28}
+                                                width={28}
+                                                className={
+                                                    p.likes?.includes(userId)
+                                                        ? [
+                                                              styles.heartIcon,
+                                                              styles.active,
+                                                          ].join(" ")
+                                                        : styles.heartIcon
+                                                }
+                                                onClick={() => toggleLike(p.id)}
+                                            />
+                                            <p>{p.likesCount}</p>
+                                        </div>
+                                    )}
                                     <NavLink
                                         className={styles.commentBtnWrapper}
                                         to={`/posts/${p.id}`}

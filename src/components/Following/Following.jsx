@@ -11,8 +11,6 @@ export default function Followers() {
 
     if (loading) return <div className="loading">Loading...</div>;
 
-    console.log("User Following:", userFollowing);
-
     return (
         <>
             <Nav />

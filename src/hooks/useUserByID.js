@@ -8,7 +8,7 @@ const client = axios.create({
 
 export default function useUserById() {
     const [user, setUser] = useState(null);
-    const [loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
     const { id } = useParams();

@@ -20,58 +20,61 @@ export default function Comments({ postId }) {
         setComment("");
     };
 
+    const user = JSON.parse(localStorage.getItem("user"));
+
     return (
         <>
-            <div className={styles.commentsWrapper}>
-                <p>Comments </p>
-                {comments.map((c) => (
-                    <div className={styles.commentInfo} key={c.id}>
-                        <div className={styles.profilePicture}>
-                            <img
-                                loading="eager"
-                                className={styles.pfp}
-                                src={c.author.profilePicture}
-                            />
-                        </div>
-                        <div className={styles.contentWrapper}>
-                            <div className={styles.userInfo}>
-                                <p>{c.author.name}</p>
-                                <p className={styles.cDate}>
-                                    {new Date(c.createdAt).toLocaleDateString(
-                                        "en-US",
-                                        {
+            {!user?.isGuest && (
+                <div className={styles.commentsWrapper}>
+                    <p>Comments </p>
+                    {comments.map((c) => (
+                        <div className={styles.commentInfo} key={c.id}>
+                            <div className={styles.profilePicture}>
+                                <img
+                                    loading="eager"
+                                    className={styles.pfp}
+                                    src={c.author.profilePicture}
+                                />
+                            </div>
+                            <div className={styles.contentWrapper}>
+                                <div className={styles.userInfo}>
+                                    <p>{c.author.name}</p>
+                                    <p className={styles.cDate}>
+                                        {new Date(
+                                            c.createdAt,
+                                        ).toLocaleDateString("en-US", {
                                             year: "numeric",
                                             month: "short",
                                             day: "numeric",
                                             hour: "numeric",
                                             minute: "numeric",
-                                        },
-                                    )}
-                                </p>
+                                        })}
+                                    </p>
+                                </div>
+                                <p className={styles.cContent}>{c.content}</p>
                             </div>
-                            <p className={styles.cContent}>{c.content}</p>
                         </div>
-                    </div>
-                ))}
-                <form
-                    className={styles.commentForm}
-                    action={handleCommentSubmission}
-                >
-                    <input type="hidden" name="id" value={postId} />
-                    <textarea
-                        rows={"3"}
-                        placeholder="Write your comments here..."
-                        autoFocus
-                        name="comment"
-                        value={comment}
-                        onChange={(e) => setComment(e.target.value)}
-                        className={styles.textarea}
-                    ></textarea>
-                    <button className={styles.sendBtn} type="submit">
-                        <SendHorizontal color="#fefefe" fill="#fefefe" />
-                    </button>
-                </form>
-            </div>
+                    ))}
+                    <form
+                        className={styles.commentForm}
+                        action={handleCommentSubmission}
+                    >
+                        <input type="hidden" name="id" value={postId} />
+                        <textarea
+                            rows={"3"}
+                            placeholder="Write your comments here..."
+                            autoFocus
+                            name="comment"
+                            value={comment}
+                            onChange={(e) => setComment(e.target.value)}
+                            className={styles.textarea}
+                        ></textarea>
+                        <button className={styles.sendBtn} type="submit">
+                            <SendHorizontal color="#fefefe" fill="#fefefe" />
+                        </button>
+                    </form>
+                </div>
+            )}
         </>
     );
 }
