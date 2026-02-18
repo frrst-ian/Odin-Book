@@ -1,24 +1,51 @@
 .loginContainer,
 form.loginForm,
 a.btn,
-.oauthLogin {
+.oauthLogin,
+.left {
     display: flex;
 }
 
-.oauthLogin,
-.loginContainer {
+.left {
+    justify-content: center;
+    align-items: center;
+    background: #3b315c;
+    border-radius: 0.2rem;
+    flex: 1;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.loginFormContainer {
+    display: flex;
     flex-direction: column;
     justify-content: center;
-    width: 100%;
+    align-items: center;
+    flex: 1;
+}
+
+.selfieImg {
+    width: 530px;
+}
+
+p.tagline {
+    font-weight: bold;
+    color: #ffa2a2;
+    font-size: 1.3rem;
+    margin-top: 2rem;
 }
 
 .oauthLogin {
     gap: 1rem;
+    flex-direction: column;
+    justify-content: center;
+    width: 350px;
 }
 
 .loginContainer {
-    align-items: center;
     height: 100vh;
+    gap: 2rem;
+    background: #1b1a26;
 }
 
 .loginHeader {
@@ -147,7 +174,7 @@ hr.line {
 .dividerTxt {
     z-index: 1000;
     position: absolute;
-    background: var(--background);
+    background: #1b1a26;
     padding: 0 1rem;
     left: 10rem;
 }

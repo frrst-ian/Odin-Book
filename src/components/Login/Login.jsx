@@ -41,6 +41,14 @@ export default function Login() {
     return (
         <>
             <div className={styles.loginContainer}>
+                <div className={styles.left}>
+                    <img
+                        src="undraw_vacation-selfie_q5bs.svg"
+                        alt="selfie svg"
+                        className={styles.selfieImg}
+                    />
+                    <p className={styles.tagline} >Join odinbook to see what we're yapping about.</p>
+                </div>
                 <div className={styles.loginFormContainer}>
                     <form className={styles.loginForm} onSubmit={handleSubmit}>
                         <h2 className={styles.loginHeader}>
