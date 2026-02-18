@@ -1,11 +1,13 @@
-import Nav from "../Nav/Nav";
+import { useNavigate } from "react-router-dom";
+import { Heart, CalendarFold, MoveLeft } from "lucide-react";
 import usePostItem from "../../hooks/usePostItem";
-import styles from "./post_item.module.css";
-import { Heart, CalendarFold } from "lucide-react";
+import Nav from "../Nav/Nav";
 import Comments from "../Comments/Comments";
+import styles from "./post_item.module.css";
 
 export default function PostItem() {
     const { post, loading, error, toggleLike } = usePostItem();
+    const navigate = useNavigate();
 
     if (loading) return <div className="loading">Loading...</div>;
     if (error) return <div className="error">{error.error}</div>;
@@ -19,6 +21,14 @@ export default function PostItem() {
             <div className={styles.postWrapper}>
                 {post && (
                     <div className={styles.postItem}>
+                        <div className={styles.top}>
+                            <button
+                                className={styles.backBtn}
+                                onClick={() => navigate("/posts")}
+                            >
+                                <MoveLeft color="#8b5cf6" />
+                            </button>
+                        </div>
                         <div className={styles.user}>
                             <img
                                 loading="eager"

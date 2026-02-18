@@ -1,12 +1,13 @@
 import useFollowers from "../../hooks/useFollowers";
 import Nav from "../Nav/Nav";
 import styles from "./followers.module.css";
-import { CircleUser } from "lucide-react";
-import { useNavigate } from "react-router-dom";
+import { CircleUser, MoveLeft } from "lucide-react";
+import { useNavigate, useParams } from "react-router-dom";
 
 export default function Followers() {
     const { userFollowers, error, loading } = useFollowers();
     const navigate = useNavigate();
+    const { id } = useParams();
 
     if (loading) return <div className="loading">Loading...</div>;
 
@@ -15,6 +16,14 @@ export default function Followers() {
             <Nav />
             <div className={styles.followersWrapper}>
                 <div className={styles.userList}>
+                    <div className={styles.top}>
+                        <button
+                            className={styles.backBtn}
+                            onClick={() => navigate(`/users/${id}`)}
+                        >
+                            <MoveLeft color="#8b5cf6" /> Back
+                        </button>
+                    </div>
                     {userFollowers.map((u) => (
                         <div key={u.id} className={styles.userItem}>
                             <div className={styles.user}>

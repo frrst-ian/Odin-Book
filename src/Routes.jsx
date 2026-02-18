@@ -16,7 +16,7 @@ const AppRoutes = () => {
         <Routes>
             <Route path="*" element={<NotFound />} />
             <Route path="/" element={<Navigate to="login" replace />} />
-            <Route path="register" element={<Register />} />
+            <Route path="register" element={<Register  />} />
             <Route path="login" element={<Login />} />
             <Route path="auth/callback" element={<OAuthCallback />} />
 

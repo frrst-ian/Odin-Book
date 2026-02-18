@@ -104,5 +104,5 @@ export default function usePost() {
         }
     };
 
-    return { posts, loading, error, toggleLike, submitPost,postSubmitting };
+    return { posts, loading, error, toggleLike, submitPost, postSubmitting };
 }

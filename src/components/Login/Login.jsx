@@ -1,20 +1,24 @@
-import { useState } from "react";
 import useLogin from "../../hooks/useLogin";
 import Button from "../Button/Button";
 import styles from "./login.module.css";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "../../context/UserContext";
 import { Github } from "lucide-react";
 
 export default function Login() {
+    const navigate = useNavigate();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const { loginUser, error, submitting } = useLogin();
-
-    const { loginAsGuest } = useContext(UserContext);
+    const { loginAsGuest, user } = useContext(UserContext);
     const [guestLoading, setGuestLoading] = useState(false);
-    const navigate = useNavigate();
+
+    useEffect(() => {
+        if (user && !user?.isGuest) {
+            navigate("/posts");
+        }
+    }, [user, navigate]);
 
     const handleSubmit = (e) => {
         e.preventDefault();

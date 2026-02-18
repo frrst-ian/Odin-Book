@@ -7,10 +7,9 @@
 
 .userInfo {
     display: flex;
-    justify-content: center;
     flex-direction: column;
     align-items: center;
-    padding: 1rem;
+    padding: 1.3rem;
     width: 475px;
     border-radius: 0.6rem;
     min-height: 350px;
@@ -19,6 +18,16 @@
 }
 
 .top {
+    width: 100%;
+}
+
+.backBtn {
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.center {
     width: 100%;
     display: flex;
     margin-bottom: 1rem;

@@ -4,7 +4,7 @@ import { Navigate } from "react-router-dom";
 
 const ProtectedRoute = ({ children, guestAllowed = false }) => {
     const { user, loading } = useContext(UserContext);
-    if (loading) return <div>Loading...</div>;
+    if (loading) return <div className="loading" >Loading...</div>;
     if (!user) return <Navigate to="/login" replace />;
     if (!guestAllowed && user.isGuest) return <Navigate to="/posts" replace />;
     return children;

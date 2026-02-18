@@ -7,7 +7,7 @@ const client = axios.create({
 });
 
 export default function useUserById() {
-    const [user, setUser] = useState(null);
+    const [userItem, setUser] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
@@ -34,5 +34,5 @@ export default function useUserById() {
         fetchUserData();
     }, [id]);
 
-    return { user, loading, error };
+    return { userItem, loading, error };
 }

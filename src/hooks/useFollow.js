@@ -3,7 +3,14 @@ import axios from "axios";
 
 const client = axios.create({
     baseURL: "http://localhost:3000/api",
-    headers: { Authorization: `Bearer ${localStorage.getItem("token")} ` },
+});
+
+client.interceptors.request.use((config) => {
+    const token = localStorage.getItem("token");
+    if (token) {
+        config.headers.Authorization = `Bearer ${token}`;
+    }
+    return config;
 });
 
 export default function useFollow() {
@@ -35,9 +42,6 @@ export default function useFollow() {
 
             if (isFollowing) {
                 await client.delete("/f", {
-                    headers: {
-                        Authorization: `Bearer ${localStorage.getItem("token")} `,
-                    },
                     data: { followedUserID: userId },
                 });
                 setUserFollowing((prev) =>
@@ -45,16 +49,9 @@ export default function useFollow() {
                 );
             } else {
                 await client.post("/f", {
-                    headers: {
-                        Authorization: `Bearer ${localStorage.getItem("token")} `,
-                    },
                     followedUserID: userId,
                 });
-                const res = await client.get("/f", {
-                    headers: {
-                        Authorization: `Bearer ${localStorage.getItem("token")} `,
-                    },
-                });
+                const res = await client.get("/f", {});
                 setUserFollowing(res.data);
             }
         } catch (err) {
