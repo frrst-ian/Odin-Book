@@ -2,7 +2,7 @@ import { useEffect, useState, useCallback } from "react";
 import axios from "axios";
 
 const client = axios.create({
-    baseURL: import.meta.env.API_URL,
+    baseURL: import.meta.env.VITE_API_URL,
 });
 
 export default function useUsers() {

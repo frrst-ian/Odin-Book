@@ -3,7 +3,7 @@ import { UserContext } from "../context/UserContext";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
-const client = axios.create({ baseURL: import.meta.env.API_URL });
+const client = axios.create({ baseURL: import.meta.env.VITE_API_URL });
 
 export default function useLogin() {
     const { login } = useContext(UserContext);
