@@ -30,7 +30,7 @@ const Register = () => {
     }, [file]);
 
     const handleSubmit = (e) => {
-        e.preventDefault()
+        e.preventDefault();
         const form = new FormData();
 
         form.append("name", name);
@@ -41,7 +41,7 @@ const Register = () => {
         form.append("bio", bio);
 
         registerUser(form);
-        setFilePrev(null)
+        setFilePrev(null);
     };
 
     const handleFileChange = (e) => {
@@ -49,7 +49,7 @@ const Register = () => {
     };
 
     const handleOAuthLogin = (provider) => {
-        const baseUrl = "http://localhost:3000/api";
+        const baseUrl = import.meta.env.VITE_API_URL;
         window.location.href = `${baseUrl}/auth/${provider}`;
     };
 
