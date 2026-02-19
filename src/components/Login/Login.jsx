@@ -27,7 +27,7 @@ export default function Login() {
     };
 
     const handleOAuthLogin = (provider) => {
-        const baseUrl = "http://localhost:3000/api";
+        const baseUrl =  import.meta.env.VITE_API_URL;
         window.location.href = `${baseUrl}/auth/${provider}`;
     };
 
