@@ -13,7 +13,7 @@ const useOAuthCallback = () => {
 
     if (token) {
       handleOAuthCallback(token)
-      navigate("/users")
+      navigate("/posts")
     } else {
       navigate("/login");
     }

@@ -37,7 +37,8 @@ export default function Posts() {
     const user = JSON.parse(localStorage.getItem("user"));
     const userId = user.id;
 
-    const handleSubmitPost = () => {
+    const handleSubmitPost = (e) => {
+        e.preventDefault();
         if (!postContent.trim()) return;
 
         const form = new FormData();
@@ -66,7 +67,7 @@ export default function Posts() {
                 {!user?.isGuest && (
                     <form
                         className={styles.createPostWrapper}
-                        action={handleSubmitPost}
+                        onSubmit={handleSubmitPost}
                     >
                         <textarea
                             rows={"6"}

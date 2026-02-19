@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import useRegister from "../../hooks/useRegister";
 import styles from "./register.module.css";
 import Button from "../Button/Button";
+import { CircleUserRound } from "lucide-react";
 
 const Register = () => {
     const { registerUser, error, submitting } = useRegister();
@@ -12,9 +13,24 @@ const Register = () => {
     const [file, setSelectedFile] = useState(null);
     const [bio, setBio] = useState("");
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
+    const [filePrev, setFilePrev] = useState(null);
 
+    useEffect(() => {
+        const filePreview = () => {
+            if (!file) return;
+            const reader = new FileReader();
+
+            reader.onloadend = () => {
+                setFilePrev(reader.result);
+            };
+
+            reader.readAsDataURL(file);
+        };
+        filePreview();
+    }, [file]);
+
+    const handleSubmit = (e) => {
+        e.preventDefault()
         const form = new FormData();
 
         form.append("name", name);
@@ -25,6 +41,7 @@ const Register = () => {
         form.append("bio", bio);
 
         registerUser(form);
+        setFilePrev(null)
     };
 
     const handleFileChange = (e) => {
@@ -36,6 +53,11 @@ const Register = () => {
         window.location.href = `${baseUrl}/auth/${provider}`;
     };
 
+    const removeFilePrev = () => {
+        setFilePrev(null);
+        setSelectedFile(null);
+    };
+
     return (
         <>
             <div className={styles.registerContainer}>
@@ -44,88 +66,124 @@ const Register = () => {
                         className={styles.registerForm}
                         onSubmit={handleSubmit}
                     >
-                        <h2 className={styles.registerHeader}>
-                            Create an account
-                        </h2>
+                        <div className={styles.left}>
+                            <h2 className={styles.registerHeader}>
+                                Create an account
+                            </h2>
 
-                        {error && (
-                            <div className={styles.error}>
-                                {error.map((err, index) => (
-                                    <span key={index}>{err}</span>
-                                ))}
+                            {error && (
+                                <div className={styles.error}>
+                                    {error.map((err, index) => (
+                                        <span key={index}>{err}</span>
+                                    ))}
+                                </div>
+                            )}
+                            <input
+                                className={styles.registerInput}
+                                type="Full name"
+                                title="Full name"
+                                name="name"
+                                value={name}
+                                onChange={(e) => setName(e.target.value)}
+                                autoComplete="name"
+                                placeholder="Name"
+                                required
+                            />
+                            <input
+                                className={styles.registerInput}
+                                type="email"
+                                title="Email"
+                                name="email"
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
+                                autoComplete="email"
+                                placeholder="Email"
+                                required
+                            />
+                            <input
+                                className={styles.registerInput}
+                                type="password"
+                                title="Password"
+                                name="password"
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
+                                autoComplete="current-password"
+                                placeholder="Password"
+                                required
+                            />
+                            <input
+                                className={styles.registerInput}
+                                type="password"
+                                title="Confirm password"
+                                name="confirmPassword"
+                                value={confirmPassword}
+                                onChange={(e) =>
+                                    setConfirmPassword(e.target.value)
+                                }
+                                autoComplete="current-password"
+                                placeholder="Confirm password"
+                                required
+                            />
+                        </div>
+                        <div className={styles.right}>
+                            <div className={styles.pfpWrapper}>
+                                <label
+                                    htmlFor="pfp"
+                                    id={styles.customeFileUpload}
+                                >
+                                    <CircleUserRound
+                                        strokeWidth={1}
+                                        className={styles.pfpSvg}
+                                    />
+                                </label>
+                                <input
+                                    id="pfp"
+                                    type="file"
+                                    onChange={handleFileChange}
+                                    required
+                                    accept="image/*"
+                                    className={styles.fileUpload}
+                                />
+                                {filePrev && (
+                                    <div>
+                                        <img
+                                            className={styles.imgPrev}
+                                            src={filePrev}
+                                            alt="Preview"
+                                        />
+                                        <button
+                                            className={styles.closeBtn}
+                                            onClick={() => removeFilePrev()}
+                                        >
+                                            x
+                                        </button>
+                                    </div>
+                                )}
                             </div>
-                        )}
-                        <input
-                            className={styles.registerInput}
-                            type="Full name"
-                            title="Full name"
-                            name="name"
-                            value={name}
-                            onChange={(e) => setName(e.target.value)}
-                            autoComplete="name"
-                            placeholder="Name"
-                            required
-                        />
-                        <input
-                            className={styles.registerInput}
-                            type="email"
-                            title="Email"
-                            name="email"
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
-                            autoComplete="email"
-                            placeholder="Email"
-                            required
-                        />
-                        <input
-                            className={styles.registerInput}
-                            type="password"
-                            title="Password"
-                            name="password"
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}
-                            autoComplete="current-password"
-                            placeholder="Password"
-                            required
-                        />
-                        <input
-                            className={styles.registerInput}
-                            type="password"
-                            title="Confirm password"
-                            name="confirmPassword"
-                            value={confirmPassword}
-                            onChange={(e) => setConfirmPassword(e.target.value)}
-                            autoComplete="current-password"
-                            placeholder="Confirm password"
-                            required
-                        />
-                        <label id={styles.file}>
-                            Upload your profile picture (max: 5mb):
-                        </label>
-                        <input
-                            id="file"
-                            type="file"
-                            onChange={handleFileChange}
-                            required
-                            accept="image/*"
-                        />
-                        <input
-                            className={styles.registerInput}
-                            type="text"
-                            name="bio"
-                            value={bio}
-                            onChange={(e) => setBio(e.target.value)}
-                            placeholder="Bio"
-                            required
-                        />
+                            <input
+                                className={styles.registerInput}
+                                type="text"
+                                name="bio"
+                                value={bio}
+                                onChange={(e) => setBio(e.target.value)}
+                                placeholder="Bio"
+                                required
+                            />
 
-                        <Button
-                            type="primary"
-                            label={submitting ? "Submitting..." : "Register"}
-                            status={submitting}
-                        ></Button>
+                            <Button
+                                type="primary"
+                                label={
+                                    submitting ? "Submitting..." : "Register"
+                                }
+                                status={submitting}
+                            ></Button>
+                        </div>
                     </form>
                     <div className={styles.oauthLogin}>
+                        <div className={styles.dividerWrapper}>
+                            <hr className={styles.line} />
+                            <p className={styles.dividerTxt}>or</p>
+                        </div>
                         <button
                             className={styles.btnOAuth}
                             onClick={() => handleOAuthLogin("github")}

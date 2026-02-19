@@ -179,7 +179,6 @@ img.postImg {
     fill: var(--s-background);
 }
 
-
 .commentBtnWrapper {
     display: flex;
     gap: 0.45rem;
@@ -187,7 +186,7 @@ img.postImg {
 }
 
 .closeBtn {
-        position: absolute;
+    position: absolute;
     left: 6rem;
     background: var(--s-background);
     color: var(--primary);
