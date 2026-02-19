@@ -96,3 +96,9 @@ img.pfp {
     gap: 0.85rem;
     color: var(--primary);
 }
+
+@media (max-width: 560px) {
+    .userItem {
+        width: 100%;
+    }
+}

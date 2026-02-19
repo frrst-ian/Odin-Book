@@ -1,9 +1,7 @@
-import axios from "axios";
 import { useContext, useState } from "react";
 import { UserContext } from "../context/UserContext";
 import { useNavigate } from "react-router-dom";
-
-const client = axios.create({ baseURL:import.meta.env.VITE_API_URL });
+import { client } from "../helpers/axiosClient";
 
 export default function useRegister() {
     const { login } = useContext(UserContext);
@@ -14,9 +12,7 @@ export default function useRegister() {
     const registerUser = async (form) => {
         try {
             setSubmitting(true);
-            const response = await client.post("/auth/register", 
-                form,
-            );
+            const response = await client.post("/auth/register", form);
 
             const userData = response.data;
             login(userData.token, userData.user);

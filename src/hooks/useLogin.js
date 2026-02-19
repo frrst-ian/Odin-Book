@@ -1,9 +1,7 @@
 import { useContext, useState } from "react";
 import { UserContext } from "../context/UserContext";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
-
-const client = axios.create({ baseURL: import.meta.env.VITE_API_URL });
+import { client } from "../helpers/axiosClient";
 
 export default function useLogin() {
     const { login } = useContext(UserContext);
@@ -24,7 +22,7 @@ export default function useLogin() {
             login(userData.token, userData.user);
             navigate("/posts");
         } catch (err) {
-            setError(err.response.data.errors)
+            setError(err.response.data.errors);
         } finally {
             setSubmitting(false);
         }

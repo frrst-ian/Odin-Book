@@ -46,7 +46,7 @@ img.pfp {
 img.postImg {
     border-radius: 1%;
     object-fit: cover;
-    min-width: 20rem;
+    min-width: 100%;
     min-height: 25rem;
 }
 

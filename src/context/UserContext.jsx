@@ -1,11 +1,7 @@
 import { createContext, useState, useEffect, useCallback } from "react";
-import axios from "axios";
+import { client } from "../helpers/axiosClient";
 
 const UserContext = createContext();
-
-const client = axios.create({
-    baseURL: import.meta.env.VITE_API_URL,
-});
 
 const isTokenExpired = (token) => {
     try {

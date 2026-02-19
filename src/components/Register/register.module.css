@@ -196,9 +196,56 @@ hr.line {
     border-radius: 50%;
 }
 
-@media (max-width: 380px) {
-    form.loginForm {
-        width: 100%;
-        padding: 1.2rem;
+@media (max-width: 720px) {
+    .registerContainer {
+        padding: 0 1.3rem;
     }
+    .registerFormContainer {
+        width: 100%;
+        margin: 0 1rem;
+    }
+
+    .registerHeader {
+        font-size: 1.2rem;
+    }
+}
+
+@media (max-width: 560px) {
+    .registerContainer {
+        padding: 0.5rem 2rem;
+    }
+
+    .registerFormContainer {
+        font-size: 0.87rem;
+    }
+
+    form.registerForm {
+        display: block;
+    }
+
+    .left {
+        padding: 0;
+    }
+
+    .right {
+        padding: 0;
+    }
+
+    .registerInput {
+        height: 30px;
+    }
+
+    .pfpSvg {
+        width: 90px;
+        height: 90px;
+    }
+
+    .pfpWrapper {
+        margin-top: 1rem;
+    }
+
+    .dividerTxt {
+        left:6.5rem;
+    }
+
 }

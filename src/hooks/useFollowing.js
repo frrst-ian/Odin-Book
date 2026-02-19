@@ -1,10 +1,6 @@
 import { useState, useEffect } from "react";
-import axios from "axios";
 import { useParams } from "react-router-dom";
-
-const client = axios.create({
-    baseURL: import.meta.env.VITE_API_URL,
-});
+import { client } from "../helpers/axiosClient";
 
 export default function useFollowing() {
     const [userFollowing, setUserFollowing] = useState([]);

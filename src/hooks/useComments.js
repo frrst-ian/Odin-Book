@@ -1,10 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import axios from "axios";
-
-const client = axios.create({
-    baseURL: import.meta.env.VITE_API_URL,
-});
+import { client } from "../helpers/axiosClient";
 
 export default function useComments() {
     const [comments, setComments] = useState([]);

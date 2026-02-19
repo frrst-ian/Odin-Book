@@ -180,6 +180,14 @@ hr.line {
 }
 
 @media (max-width: 380px) {
+    .loginContainer {
+        font-size: 0.88rem;
+    }
+
+    .loginInput {
+        height: 34.4px;
+    }
+
     form.loginForm {
         width: 100%;
         font-size: 1rem;

@@ -1,9 +1,5 @@
-import axios from "axios";
 import { useState, useEffect } from "react";
-
-const client = axios.create({
-    baseURL: import.meta.env.VITE_API_URL,
-});
+import { client } from "../helpers/axiosClient";
 
 export default function usePost() {
     const [posts, setPosts] = useState([]);

@@ -1,9 +1,5 @@
 import { useEffect, useState, useCallback } from "react";
-import axios from "axios";
-
-const client = axios.create({
-    baseURL: import.meta.env.VITE_API_URL,
-});
+import {client} from "../helpers/axiosClient";
 
 export default function useUsers() {
     const [users, setUsers] = useState([]);

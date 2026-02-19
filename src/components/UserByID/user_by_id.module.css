@@ -127,4 +127,8 @@ img.pfp {
     .userInfoWrapper {
         padding: 1.5rem;
     }
+
+    .center {
+        flex-direction: column;
+    }
 }
