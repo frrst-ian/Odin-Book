@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 
 const client = axios.create({
-    baseURL: "http://localhost:3000/api",
+    baseURL: import.meta.env.API_URL,
 });
 
 export default function usePostItem() {

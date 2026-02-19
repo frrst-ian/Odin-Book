@@ -2,7 +2,7 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 
 const client = axios.create({
-    baseURL: "http://localhost:3000/api",
+    baseURL: import.meta.env.API_URL,
 });
 
 export default function usePost() {
