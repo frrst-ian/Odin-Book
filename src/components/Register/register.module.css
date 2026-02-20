@@ -251,6 +251,7 @@ hr.line {
     .imgPrev {
         width: 90px;
         height: 90px;
+        left: 4.5rem;
     }
 
 }
