@@ -251,6 +251,9 @@ hr.line {
     .imgPrev {
         width: 90px;
         height: 90px;
+    }
+
+    .closeBtn {
         left: 4.5rem;
     }
 
